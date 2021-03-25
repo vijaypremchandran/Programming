@@ -1,3 +1,0 @@
-This is the date read from the file
-that is present in the data.txt on the 
-same folder location.
