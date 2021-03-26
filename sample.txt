@@ -1,4 +1,6 @@
 Pushing to the main branch from local main.
 Adding new line from the local branch.
 
-Adding changes for new story
+Adding changes for new story.
+
+added the line after hot fix install
