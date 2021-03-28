@@ -6,7 +6,6 @@ const app = express();
 
 // Second add get to the root folder.
 app.get("/", function(req,res) {
-    res.send("server is up and running ");
     
     // going to call a api to bring the local whether info.
     const url = "https://api.openweathermap.org/data/2.5/weather?q=ohio&appid=424bd5cc35b5f6769f2d9e6bee87b052&units=imperial"
@@ -22,17 +21,25 @@ app.get("/", function(req,res) {
         //  console.log(weatherDataStrng);
 
         // traverse the JSON object and get the required information. 
-        const temp = weatherData.main.temp;
-        const feelsLike = weatherData.main.feels_like;
-        const tempMin = weatherData.main.temp_min;
-        const tempMax = weatherData.main.temp_max;
-        const description = weatherData.weather[0].description;
+        const temp          = weatherData.main.temp;
+        const feelsLike     = weatherData.main.feels_like;
+        const tempMin       = weatherData.main.temp_min;
+        const tempMax       = weatherData.main.temp_max;
+        const description   = weatherData.weather[0].description;
+        const icon          = weatherData.weather[0].icon
+        const imageURL      = "http://openweathermap.org/img/wn/" + icon + "@2x.png"
 
-        console.log("Temp       : " + temp);
-        console.log("Feels Like : " + feelsLike);
-        console.log("Min Temp   : " + tempMin);
-        console.log("Max Temp   : " + tempMax);
-        console.log("Description: " + description);
+        //format the output as list.
+
+        const output = `<li>Temp       : ${temp}        </li>
+                        <li>Feels Like : ${feelsLike}   </li>
+                        <li>Min Temp   : ${tempMin}     </li>
+                        <li>Max Temp   : ${tempMax}     </li>
+                        <li>Description: ${description} </li>
+                        <li>Condition  :                </li>
+                        <img src = ${imageURL}>`
+
+        res.send("Weather details " + "\n" + output);
         })
     })
 
