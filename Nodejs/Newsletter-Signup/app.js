@@ -18,16 +18,21 @@ app.get("/", function(req,res){
 //get the post from the page ..
 
 app.post("/", function(req,res){
-    console.log("Posted to the server");
+    
     // get the data from the forms.
     var firstName = req.body.fName;
     var lastName = req.body.lName;
     var email = req.body.email;
 
     console.log(firstName +' '+ lastName +' '+ email)
+    res.send("Data posted to the server");
+
 });
 
 // start the server and make it listen on Port 3000 
 app.listen(3000, function(){
     console.log("server started and listenning on port 3000");
 })
+
+// API KEY for the mailchimp : 0bec30a1902d50532081aa2fe41ac587-us1
+// list of Audience          : 1adc9e2656
