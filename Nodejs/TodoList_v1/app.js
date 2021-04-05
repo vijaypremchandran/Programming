@@ -6,15 +6,19 @@ const bodyParser = require("body-parser");
 const app = express();
 // make our app use the ejs
 app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded({extended: true}));
+
+let items = ["Buy food",
+            "Cook food",
+            "Eat food"];
 
 //get the default root / and send some response.
-
 app.get("/", function(req,res){
     // res.send("Hi there ");
-    var today = new Date();
-    var currentDay = today.getDay();
-    var day = "";
-    var dayName = "";
+    let today = new Date();
+    let currentDay = today.getDay();
+    let day = "";
+    let dayName = "";
 
     //check the day to find it is a weekday or weekend?
     if(currentDay === 6 || currentDay === 0){ 
@@ -49,8 +53,16 @@ app.get("/", function(req,res){
         default:
             console.log("Wrong day. check this.. " + currentDay)
     };
-    // send the page using the ejs..KindofDay is the var in the list.ejs file inside the View fldr. 
-    res.render("list", {kindOfDay : day, kindDayName : dayName});
+    // send the page using the ejs..KindofDay is the let in the list.ejs file inside the View fldr. 
+    res.render("list", {kindOfDay   : day, 
+                        kindDayName : dayName,
+                        newListItems : items});
+});
+
+app.post("/", function(req, res){
+    let item = req.body.newItem;
+    items.push(item);
+    res.redirect("/");
 });
 
 //start the server and listen at port 3000.

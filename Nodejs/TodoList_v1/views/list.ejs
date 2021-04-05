@@ -9,5 +9,16 @@
 <body>
     <!-- The the variable kindOfDay is comming from the app.js -->
     <h1>Today is <%= kindOfDay %> and it is <%= kindDayName %> </h1>
+    <ul>
+        <% for(var i=0; i<newListItems.length; i++){ %>
+            <li>
+                <%= newListItems[i] %>
+            </li>
+        <% } %>
+        <form action="/" method="POST" class="">
+            <input type="text" name="newItem">
+            <button type="submit">Add items </button>
+        </form>
+    </ul>
 </body>
 </html>
