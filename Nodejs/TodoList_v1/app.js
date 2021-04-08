@@ -7,6 +7,8 @@ const app = express();
 // make our app use the ejs
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
+// To use the css or images to serve to this website.
+app.use(express.static("public"));
 
 let items = ["Buy food",
             "Cook food",
