@@ -10,9 +10,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 // To use the css or images to serve to this website.
 app.use(express.static("public"));
 
-let items = ["Buy food",
-            "Cook food",
-            "Eat food"];
+let items = [];
 
 //get the default root / and send some response.
 app.get("/", function(req,res){
