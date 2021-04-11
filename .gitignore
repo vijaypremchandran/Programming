@@ -1,2 +1,3 @@
 # ignore node modules in the nodejs projects.
 node_modules
+.DS_Store
