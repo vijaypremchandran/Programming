@@ -38,6 +38,20 @@ app.get("/contact", function(req,res){
   res.render("contact.ejs", {contactText : contactContent});
 });
 
+//creating a get for compose page.
+app.get("/compose", function(req,res){
+  res.render("compose.ejs");
+});
+
+//catch the post from the form in compose page..
+app.post("/compose", function(req,res){
+
+  var blog = {Title : req.body.blogTitle,
+              Post  : req.body.blogPost}
+  console.log(blog.Title);
+  console.log(blog.Post);           
+});
+
 
 
 
