@@ -15,10 +15,28 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
+// Get the route request and render the home page from ejs.
+// move the home page content to the home.ejs.
 
+//from the root, render the landing page.
+app.get("/", function(req,res){
+  res.render("home.ejs", {homeText : homeStartingContent});
+});
 
+// when home is clicked, href on this link does this post.
+app.get("/home", function(req,res){
+  res.render("home.ejs", {homeText : homeStartingContent});
+});
 
+// when about is clicked, href on this link does this post.
+app.get("/about", function(req,res){
+  res.render("about.ejs", {aboutText : aboutContent});
+});
 
+// when contact is clicked, href on this link does this post.
+app.get("/contact", function(req,res){
+  res.render("contact.ejs", {contactText : contactContent});
+});
 
 
 
