@@ -15,6 +15,10 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
+// Add a global variables to capture all your posts from the compose page and save it an an array.
+
+const Posts = [];
+
 // Get the route request and render the home page from ejs.
 // move the home page content to the home.ejs.
 
@@ -47,9 +51,15 @@ app.get("/compose", function(req,res){
 app.post("/compose", function(req,res){
 
   var blog = {Title : req.body.blogTitle,
-              Post  : req.body.blogPost}
-  console.log(blog.Title);
-  console.log(blog.Post);           
+              Post  : req.body.blogPost} 
+  
+  //  save the posts inside global variables.
+  Posts.push(blog);
+  console.log(Posts);
+
+  // redirect the page back to the home page
+  res.render("home.ejs", {homeText : homeStartingContent});
+
 });
 
 
