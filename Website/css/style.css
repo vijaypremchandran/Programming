@@ -1,0 +1,96 @@
+* {
+  box-sizing: border-box;
+}
+
+a:link {
+  color: grey;
+}
+
+a:visited {
+  color: grey;
+  text-decoration: none
+}
+
+a:hover{
+	color: grey;
+	font-family: Baskerville;
+	border:5px grey;
+	/*background: #ffd1d2;*/
+	text-decoration: none;
+}
+
+a:active {
+  color: grey;
+  text-decoration: none
+} 
+
+#h1 {
+  background-color: #ffd1d2;
+  color: grey;
+  padding: 0px;	
+  text-align: center;
+}
+ 
+
+body {
+  background-color:white;
+  display: block;
+  font-family:Baskerville;
+}
+
+/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+@media (max-width: 600px) {
+  #footer, #h1, .columnvj {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.bg-vjcontact{
+  background-color:#ffd1d2;
+  opacity: 0.7;
+
+}
+
+.bg-vjfooter{
+  background-color:#ffd1d2;
+
+}
+
+form{
+  margin-top: 50px;
+  transition: all 4s ease-in-out;
+}
+
+.form-field{
+  width: 400px;
+  background: transparent;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #ffd1d2;
+  color: grey;
+  font-size: 20px;
+  margin-top: 16px;
+
+}
+
+/* Properties for the portfolio grid
+.header {
+    text-align: center;
+    padding: 32px;
+  }
+*/
+
+  .rowgrid {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    -ms-flex-wrap: wrap; /* IE10 */
+    flex-wrap: wrap;
+    padding: 0 4px;
+  }
+
+
+/* style for the webpage link on the porfolio page www.nandyvjphotography.com/portfolio*/
+.vjpage {
+  color: hotpink;
+}
