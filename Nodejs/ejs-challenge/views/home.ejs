@@ -7,6 +7,12 @@
 <p>
     <%= homeText %>
 </p>
+ 
+
+<% blogPost.forEach(function(blog) { %>
+      <h3> <%= blog.Title %> </h3>  
+      <p>  <%= blog.Post %>  </p>  
+<%  }) %>
 
 <%# comment : Add the footer from the template %>
 <%-  include("partials/footer"); -%>

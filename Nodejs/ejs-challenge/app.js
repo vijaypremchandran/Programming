@@ -24,7 +24,7 @@ const Posts = [];
 
 //from the root, render the landing page.
 app.get("/", function(req,res){
-  res.render("home.ejs", {homeText : homeStartingContent});
+  res.render("home.ejs", {homeText : homeStartingContent, blogPost : Posts});
 });
 
 // when home is clicked, href on this link does this post.
@@ -55,10 +55,11 @@ app.post("/compose", function(req,res){
   
   //  save the posts inside global variables.
   Posts.push(blog);
-  console.log(Posts);
 
   // redirect the page back to the home page
-  res.render("home.ejs", {homeText : homeStartingContent});
+  // res.render("home.ejs", {homeText : homeStartingContent});
+  res.redirect("/");  
+
 
 });
 
