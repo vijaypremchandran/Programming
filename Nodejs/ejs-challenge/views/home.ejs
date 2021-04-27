@@ -11,7 +11,7 @@
 
 <% blogPost.forEach(function(blog) { %>
       <h3> <%= blog.Title %> </h3>  
-      <p>  <%= blog.Post %>  </p>  
+      <p>  <%= blog.Post.substring(0,50) + " .." %>  </p>  
 <%  }) %>
 
 <%# comment : Add the footer from the template %>
