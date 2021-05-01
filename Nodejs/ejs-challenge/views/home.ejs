@@ -11,7 +11,8 @@
 
 <% blogPost.forEach(function(blog) { %>
       <h3> <%= blog.Title %> </h3>  
-      <p>  <%= blog.Post.substring(0,50) + " .." %>  </p>  
+      <p>  <%= blog.Post.substring(0,50) + " .." %> <a href="/posts/<%= blog.Title %>">  Read more </a> </p>  
+      
 <%  }) %>
 
 <%# comment : Add the footer from the template %>
