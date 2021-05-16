@@ -1,0 +1,14 @@
+{
+  "name": "mongoose",
+  "version": "1.0.0",
+  "description": "To use Mongoose for mondb ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vijay Chandran",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^5.12.9"
+  }
+}
