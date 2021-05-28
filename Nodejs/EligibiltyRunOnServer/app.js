@@ -53,7 +53,7 @@ console.log('build commmand : ' + buildCommand);
 
 // Connect to the remote server and then run the shell to load eligibilty.
 ssh.connect({
-  host: '172.16.101.31',
+  host: '***.**.***.**', //Put your ssh IP address.
   username: userName,
   privateKey: `C:\\Users\\${userName}\\.ssh\\id_rsa`
 })
