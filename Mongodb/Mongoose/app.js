@@ -39,10 +39,22 @@ const personShema = new mongoose.Schema({
 const Person = mongoose.model("Person", personShema );
 
 //Construct the record with the above collection.
-const person = new Person({
-    name : "Vijay",
-    age : 37,
-    type : "Good man"
-});
+// const person = new Person({
+    // name : "Vijay",
+    // age : 37,
+    // type : "Good man"
+// });
 
-person.save();
+//person.save();
+
+// find everything that is on the person schema 
+Person.find(function(err,persons){
+    if(err){
+        console.log(err);
+    }else {
+        persons.forEach(function(person){
+            console.log(person.name);
+        })
+        mongoose.connection.close();
+    }
+})
