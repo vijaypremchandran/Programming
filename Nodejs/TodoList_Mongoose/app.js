@@ -11,8 +11,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 // To use the css or images to serve to this website.
 app.use(express.static("public"));
 
-let items = [];
-
 //create new database 
 mongoose.connect("mongodb://localhost:27017/todoListDB",{ useNewUrlParser: true, useUnifiedTopology: true  });
 
@@ -42,18 +40,19 @@ const Item = mongoose.model("Item",itemSchema);
     // }
 // })
 
+//Display the list when the page is first loaded.
+
 //use find method to bring all the data from the model.
+//let items = [];
 Item.find({},function(err,docs){
     if(err){
         console.log(err);
     }else {
-        // console.log("fetched all the items form DB.." + docs);
         docs.forEach(function(element){
-            items.push(element.name);
+            items.push(element);
         })
     }
 })
-
 
 //get the default root / and send some response.
 app.get("/", function(req,res){
@@ -96,6 +95,18 @@ app.get("/", function(req,res){
         default:
             console.log("Wrong day. check this.. " + currentDay)
     };
+    //use find method to bring all the data from the model.
+    // let items = [];
+    Item.find({},function(err,docs){
+        if(err){
+            console.log(err);
+        }else {
+            // items = []
+            docs.forEach(function(element){
+                items.push(element.name);
+            })
+        }
+    })
     // send the page using the ejs..KindofDay is the let in the list.ejs file inside the View fldr. 
     res.render("list", {kindOfDay   : day, 
                         kindDayName : dayName,
@@ -104,7 +115,27 @@ app.get("/", function(req,res){
 
 app.post("/", function(req, res){
     let item = req.body.newItem;
+    //The below push is to temperory to show the most recent items that was added.
+    // subsequent page load should bring it let test by commenting this..
     items.push(item);
+    // save the document to the model.
+    const item1 = new Item({name : item});
+    item1.save(function(err){
+        if(err){
+            console.log("Save error on the new item");
+        }
+    })
+    res.redirect("/");
+});
+
+//handle another post request from the form /delete.
+app.post("/delete", function(req,res){
+    checkedItem = req.body.checkbox
+    Item.findByIdAndRemove(checkedItem, function(err){
+        if(err){
+            console.log("error on delete item ");
+        }
+    });
     res.redirect("/");
 });
 
