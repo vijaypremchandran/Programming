@@ -22,41 +22,9 @@ const itemSchema = new mongoose.Schema({
 //Create a model for the above schema ..
 const Item = mongoose.model("Item",itemSchema);
 
-// Add 3 items to the model as default list.
-
-// const item1 = new Item({name : "groceries"});
-// const item2 = new Item({name : "biking "});
-// const item3 = new Item({name : "fishing"});
-
-//put all the default items in an array .
-// const defaultItems = [item1,item2,item3];
-
-//insert default items to the collections.
-// Item.insertMany(defaultItems,function(err){
-    // if(err){
-        // console.log(err);
-    // }else{
-        // console.log("defalut items loaded..")
-    // }
-// })
-
-//Display the list when the page is first loaded.
-
-//use find method to bring all the data from the model.
-//let items = [];
-Item.find({},function(err,docs){
-    if(err){
-        console.log(err);
-    }else {
-        docs.forEach(function(element){
-            items.push(element);
-        })
-    }
-})
-
 //get the default root / and send some response.
 app.get("/", function(req,res){
-    // res.send("Hi there ");
+    
     let today = new Date();
     let currentDay = today.getDay();
     let day = "";
@@ -95,29 +63,19 @@ app.get("/", function(req,res){
         default:
             console.log("Wrong day. check this.. " + currentDay)
     };
-    //use find method to bring all the data from the model.
-    // let items = [];
     Item.find({},function(err,docs){
         if(err){
             console.log(err);
-        }else {
-            // items = []
-            docs.forEach(function(element){
-                items.push(element.name);
-            })
         }
-    })
-    // send the page using the ejs..KindofDay is the let in the list.ejs file inside the View fldr. 
-    res.render("list", {kindOfDay   : day, 
-                        kindDayName : dayName,
-                        newListItems : items});
+        res.render("list", {kindOfDay   : day, 
+            kindDayName : dayName,
+            newListItems : docs});
+    }) 
+    
 });
 
 app.post("/", function(req, res){
     let item = req.body.newItem;
-    //The below push is to temperory to show the most recent items that was added.
-    // subsequent page load should bring it let test by commenting this..
-    items.push(item);
     // save the document to the model.
     const item1 = new Item({name : item});
     item1.save(function(err){
