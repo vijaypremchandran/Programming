@@ -66,6 +66,6 @@ app.get("/", function(req,res) {
 });
 
 // First step is to Open a port and listen for any request.
-app.listen(3000, function(){
+app.listen(process.env.PORT || 3000, function(){
     console.log('server started and running on port 3000');
 });

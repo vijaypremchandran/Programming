@@ -10,7 +10,7 @@
 <body>
     <!-- The the variable kindOfDay is comming from the app.js -->
     <div class="box" id="heading">
-        <h1>Today is <%= kindOfDay %> and it is <%= kindDayName %> </h1>
+        <h1> <%= listName %>  </h1>
     </div>
 
     <div class="box"> 
@@ -25,7 +25,7 @@
         
         <form action="/" method="POST" class="item">
             <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
-            <button type="submit"> + </button>
+            <button type="submit" name="list" value="<%= listName %>"> + </button>
         </form>
     </div>
     
