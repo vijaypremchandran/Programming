@@ -27,7 +27,7 @@ const articleSchema = new mongoose.Schema({
 //Create a Collection..
 const Article = mongoose.model("Article", articleSchema);
 
-// get route for the articles( GET)
+// get route for the articles(GET)
 app.get('/articles', function(req,res){
     Article.find(function(err,foundArticles){
         // console.log(foundArticles);
@@ -39,6 +39,24 @@ app.get('/articles', function(req,res){
     });
 });
 
+// post route for the articles (POST). FYI, this post is comming from the Postman vs the form.
+app.post('/articles',function(req,res){
+    // console.log(req.body.title);
+    // console.log(req.body.content);
+
+    const newArticle = new Article({
+        title   : req.body.title ,
+        content : req.body.content
+    }); 
+
+    newArticle.save(function(err){
+        if(!err){
+            res.send(" Data saved to the DB ");
+        }else{
+            res.send(err);
+        }
+    });
+});
 
 // start the server at port 3000.
 app.listen(3000, function(){
