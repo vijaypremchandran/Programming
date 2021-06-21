@@ -27,36 +27,93 @@ const articleSchema = new mongoose.Schema({
 //Create a Collection..
 const Article = mongoose.model("Article", articleSchema);
 
-// get route for the articles(GET)
-app.get('/articles', function(req,res){
-    Article.find(function(err,foundArticles){
-        // console.log(foundArticles);
-        if(!err){
-            res.send(foundArticles);
-        }else{
-            res.send(foundArticles);
-        }        
+// chaining routes handlers for the whole articles.. 
+app.route('/articles')
+    .get(function(req,res){
+        Article.find(function(err,foundArticles){
+            // console.log(foundArticles);
+            if(!err){
+                res.send(foundArticles);
+            }else{
+                res.send(foundArticles);
+            }        
+        });
+    })
+    .post(function(req,res){
+
+        const newArticle = new Article({
+            title   : req.body.title ,
+            content : req.body.content
+        }); 
+    
+        newArticle.save(function(err){
+            if(!err){
+                res.send(" Data saved to the DB ");
+            }else{
+                res.send(err);
+            }
+        });
+    })
+    .delete(function(req,res){
+        Article.deleteMany(function(err){
+            if(!err){
+                res.send(" documents deleted successfully ");
+            }else{
+                res.send(err);
+            }
+        });
     });
-});
 
-// post route for the articles (POST). FYI, this post is comming from the Postman vs the form.
-app.post('/articles',function(req,res){
-    // console.log(req.body.title);
-    // console.log(req.body.content);
+// Chaining route handlers for specific documents.. 
+app.route('/articles/:articleTitle')
+    .get(function(req,res){
+        Article.findOne({title: req.params.articleTitle}, function(err, foundArticle){
+           if(foundArticle){
+                res.send(foundArticle);
+           }else {
+                res.send("No articles matching that title was found");
+           }   
+        });
+    })
+    .put(function(req,res){
+        Article.updateOne(
+            {title: req.params.articleTitle},
+            {title: req.body.title, content:req.body.content},
+            function(err){
+                if(!err){
+                    res.send("sucessfully updated the document");
+                } else {
+                    res.send(err);
+                }
+            }
 
-    const newArticle = new Article({
-        title   : req.body.title ,
-        content : req.body.content
-    }); 
-
-    newArticle.save(function(err){
-        if(!err){
-            res.send(" Data saved to the DB ");
-        }else{
-            res.send(err);
-        }
+        );
+    })
+    .patch(function(req,res){
+        Article.updateOne(
+            {title : req.params.articleTitle},
+            {$set: req.body},
+            function(err){
+                if(!err){
+                    res.send(" successfully updated a field in the document");
+                } else {
+                    res.send(err);
+                }
+            }
+        );
+    })
+    .delete(function(req,res){
+        Article.deleteOne(
+            {title : req.params.articleTitle},
+            function(err){
+                if(!err){
+                    res.send(" Document deleted successfully ");
+                } else {
+                    res.send(err);
+                }
+            }
+        );
     });
-});
 
 // start the server at port 3000.
 app.listen(3000, function(){
