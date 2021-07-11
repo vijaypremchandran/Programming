@@ -13,7 +13,7 @@ const ssh = new NodeSSH();
 // Define constants..
 const port = 3000;
 const userName = os.userInfo().username;
-const remoteDir = '/media/cobol/users/vchandran/workspace/ProductionCodeVersion1/Shellscripts/Eligibilty_Run';
+const remoteDir = 'directory path';
 var parms = {
     filename : " ",
     clientID : " ",
