@@ -1,4 +1,8 @@
 //jshint esversion:6
+
+// use this to configure env variables as early as possible
+require('dotenv').config();
+
 // Get all the required modules for running this app.
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -22,8 +26,9 @@ const userSchema = new mongoose.Schema({
     password : String
 }); 
 
-// Using mongoose encrypt 
-const secret = "Thisisourlittlesecret";
+// Using mongoose encrypt ( this is moved to the env file for security )
+// const secret = "Thisisourlittlesecret";
+const secret = process.env.SECRET
 
 userSchema.plugin(encrypt, { secret: secret, encryptedFields: ['password'] });
 
