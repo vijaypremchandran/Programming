@@ -1,4 +1,7 @@
 # ignore node modules in the nodejs projects.
-node_modules
+node_modules/
 # misc 
 .DS_Store
+
+# .env files
+.env
