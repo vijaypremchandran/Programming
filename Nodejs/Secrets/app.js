@@ -67,7 +67,12 @@ app.get("/secrets", function(req, res){
     }  else {
         res.redirect("/login");
     }
-})
+});
+
+app.get("/logout", function(req,res){
+    req.logout();
+    res.redirect("/");
+});
 
 // catch the post request from the register route.. 
 app.post("/register", function(req,res){
