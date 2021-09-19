@@ -1,0 +1,7 @@
+Robin=nnn.nn.nnn.nn
+prodTest=xxx.xx.xxx.xx
+prod=yyy.yy.yyy.yy
+DIR="dir for shell locaation"
+uploadPath = "Where do you want the file to be placed"
+serverPort = 22
+userName = "provide your login ID user name.
