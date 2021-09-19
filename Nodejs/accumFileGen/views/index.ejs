@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="styleheet" href="styles.css">
+
+    <title>Accum file generator</title>
+  </head>
+  <body class="card-body" >
+    <h1 class="text-center text-muted" >Accum test file generator</h1>
+       <form id="newForm" class="was-validated" action="/" method="POST">
+         <div class=" form-group row">
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Tran Type</label>
+            <div class="col-sm-2">
+              <input type="text" name="tranType" class="form-control form-control-sm" id="colFormLabelSm" placeholder="A(Accum)" required maxlength="1" pattern="[A]{1}">
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Card holder num</label>
+            <div class="col-sm-2">
+              <input type="text" name="cardNum" class="form-control form-control-sm" id="colFormLabelSm" placeholder="10 digit card holder #" required maxlength="10" pattern="[0-9]{10}">
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Member num</label>
+            <div class="col-sm-2">
+              <input type="text" name="memNum" class="form-control form-control-sm" id="colFormLabelSm" placeholder="2 digit member #" required maxlength="2" pattern="[0-9]{02}">
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Sponsor num</label>
+            <div class="col-sm-2">
+              <input type="text" name="spoNum" class="form-control form-control-sm" id="colFormLabelSm" placeholder="4 digit member #" required maxlength="4" pattern="[0-9]{04}">
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Last name</label>
+            <div class="col-sm-2">
+              <input type="text" name="lastName" class="form-control form-control-sm" id="colFormLabelSm" placeholder="Not mandatory" >
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">First name</label>
+            <div class="col-sm-2">
+              <input type="text" name="firstName" class="form-control form-control-sm" id="colFormLabelSm" placeholder="Not mandatory" >
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Birth date</label>
+            <div class="col-sm-2">
+              <input type="text" name="birthDate" class="form-control form-control-sm" id="colFormLabelSm" required placeholder="CCYYDDMM" required maxlength="8" pattern="[0-9]{08}" >
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Copay Amt</label>
+            <div class="col-sm-2">
+              <input type="number" name="copayAmt" class="form-control form-control-sm" id="colFormLabelSm" required placeholder="Total Copay Amt (+/-)" min="-1000000" max="1000000">
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Total amt paid</label>
+            <div class="col-sm-2">
+              <input type="number" name="totAmt" class="form-control form-control-sm" id="colFormLabelSm" required placeholder="Total Amt Paid (+/-)" min="-1000000" max="1000000" >
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Roll Start date</label>
+            <div class="col-sm-2">
+              <input type="text" name="rollDate" class="form-control form-control-sm" id="colFormLabelSm" required placeholder="CCYYDDMM" required maxlength="8" pattern="[0-9]{08}" >
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Alt Grp ID</label>
+            <div class="col-sm-2">
+              <input type="text" name="altGrpId" class="form-control form-control-sm" id="colFormLabelSm" placeholder="Not mandatory" >
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Med Ded Amt</label>
+            <div class="col-sm-2">
+              <input type="number" name="medDed" class="form-control form-control-sm" id="colFormLabelSm" required placeholder="Med Ded Amt (+/-)" min="-100000000" max="100000000" >
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Med Max Amt</label>
+            <div class="col-sm-2">
+              <input type="number" name="medMax" class="form-control form-control-sm" id="colFormLabelSm" required placeholder="Med Max Amt (+/-)" min="-100000000" max="100000000" >
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Med OOP Amt</label>
+            <div class="col-sm-2">
+              <input type="number" name="medOop" class="form-control form-control-sm" id="colFormLabelSm" required placeholder="Med OOP Amt (+/-)" min="-100000000" max="100000000" >
+            </div>
+          </div>
+         <br>
+         <div class="mb-3" >
+           <button class="btn btn-outline-secondary btn-sm" type="submit" name="generate">Generate test record</button>
+         </div>
+       </form>
+
+       <form action="/uploadFile" enctype="multipart/form-data" method="POST"> 
+        <div class="mb-3">
+          <label for="formFileSm" class="form-label">Upload your own file </label>
+          <input class="form-control form-control-sm" id="formFileSm" type="file" name="uploaded_file" />
+        </div>
+        <div class="mb-3" >
+          <button class="btn btn-outline-secondary btn-sm" type="upload" name="upload">Submit to upload </button>
+        </div>
+      </form>
+
+       <form action="/sendFile" method="POST">
+        <div class="text-center">
+          <button class="btn btn-outline-success btn-sm" type="submit" name="sendFile"> Send file to server </button>
+        </div>
+       </form>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
