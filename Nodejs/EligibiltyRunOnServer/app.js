@@ -9,6 +9,8 @@ const app = express();
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
+const path = require('path');
+const AWS = require('aws-sdk');
 
 const {NodeSSH} = require('node-ssh');
 const os = require('os');
@@ -19,6 +21,9 @@ PORT = process.env.PORT || 3000;
 // const userName = os.userInfo().username;
 const userName = process.env.userName;
 const remoteDir = process.env.DIR;
+// const rsaKey = path.join(__dirname,'id_rsa');
+
+
 var parms = {
     filename : " ",
     clientID : " ",
@@ -31,6 +36,22 @@ var parms = {
 var connectIP = " ";
 
 var runLog = 'Sysout will be written here ( information only) ';
+
+// Read Private key from AWS and save it on a variable.!!!!
+
+//set the access credentials.
+const s3 = new AWS.S3({
+  accessKeyId : process.env.ID,
+  secretAccessKey : process.env.SECRET
+});
+
+//construct getParam
+var getParams = {
+  Bucket: process.env.BUCKET_NAME,
+  Key: process.env.FILE_NAME
+}
+
+// Read aws s3 file ends !!!!!
 
 // get the root request and send the index.html.
 app.get('/', (req, res) => {
@@ -62,7 +83,7 @@ app.post('/', (req, res) => {
   //check the run type to call the respective process.
   if(parms.runType == "X12"){
     // Dynamically populate pgm form user input.
-    var buildCommand = 'sh X12_run.sh' + ' ' + parms.filename + ' ' + parms.clientID + ' ' + parms.runDate;
+    var buildCommand = 'sh hello.sh' ;
   }else if(parms.runType == "accum"){
     var buildCommand = 'sh accum_run.sh' + ' ' + parms.filename + ' ' + parms.clientID + ' ' + parms.runDate;
   }else if(parms.runType == "Cardh29"){
@@ -89,27 +110,37 @@ app.post('/', (req, res) => {
 
   console.log ('connecting to ' + parms.runEnv + ' ' + 'on ip ..' + connectIP);
 
-  // Connect to the remote server and then run the shell to load eligibilty.
-  ssh.connect({
-    host: connectIP,
-    username: userName,
-    // privateKey: `C:\\Users\\${userName}\\.ssh\\id_rsa`
-    privateKey: __dirname + "\\id_rsa"
-  })
-
-  .then(function() {       
-    //  Command
-     ssh.execCommand(buildCommand, { cwd:remoteDir }).then(function(result) {
-    //   console.log('STDOUT: ' + result.stdout)
-    //   console.log('STDERR: ' + result.stderr)
-      if (parms.logMode == "logs"){
-        runLog = result.stdout + '\n'  +result.stderr ;
-      }else {
-        runLog = 'Sysout will be written here ( information only) ';
-      }
-      res.render("index.ejs", {logs : runLog});
-      })
-    }) 
+  //Fetch or read data from aws s3
+  s3.getObject(getParams, function (err, data) {
+  
+    if (err) {
+        console.log(err);
+    } else {
+        const rsaKey = data.Body.toString();
+        // add the connect and run code here..
+        ssh.connect({
+          host: connectIP,
+          username: userName,
+          privateKey: rsaKey
+        })
+      
+        .then(function() {       
+          //  Command
+           ssh.execCommand(buildCommand, { cwd:remoteDir }).then(function(result) {
+          //   console.log('STDOUT: ' + result.stdout)
+          //   console.log('STDERR: ' + result.stderr)
+            if (parms.logMode == "logs"){
+              runLog = result.stdout + '\n'  +result.stderr ;
+            }else {
+              runLog = 'Sysout will be written here ( information only) ';
+            }
+            res.render("index.ejs", {logs : runLog});
+            })
+          }) 
+        // add ends!!
+    }  
+  });
+ 
 });
 
 

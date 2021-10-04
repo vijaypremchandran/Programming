@@ -9,12 +9,11 @@
   "author": "Vijay Chandran",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.999.0",
     "body-parser": "^1.19.0",
     "dotenv": "^10.0.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
-    "formidable": "^1.2.2",
-    "fs-extra": "^10.0.0",
     "node-ssh": "^11.1.1"
   }
 }

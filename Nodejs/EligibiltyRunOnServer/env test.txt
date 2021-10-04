@@ -1,5 +1,0 @@
-Robin= "Provide your sever details"
-prodTest="xxx.xx.xxx.xx"
-prod="yyy.yy.yyy.yy"
-DIR="provide the dir path where your script resides"
-userName="provide your user name to access the server"
