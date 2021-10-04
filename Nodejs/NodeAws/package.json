@@ -1,0 +1,16 @@
+{
+  "name": "nodeaws",
+  "version": "1.0.0",
+  "description": "app to talk to AWS S3",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vijay Chandran",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.34.0",
+    "aws-sdk": "^2.999.0",
+    "dotenv": "^10.0.0"
+  }
+}

@@ -1,7 +1,11 @@
 # ignore node modules in the nodejs projects.
 node_modules/
+package-lock.json
 # misc 
 .DS_Store
 
 # .env files
 .env
+
+# RSA_key 
+id_rsa
