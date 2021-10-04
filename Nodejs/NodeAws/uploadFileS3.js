@@ -1,6 +1,7 @@
 // Import AWS SDK.
 const AWS = require('aws-sdk');
 const fs = require('fs');
+require('dotenv').config();
 
 //set the access credentials.
 const s3 = new AWS.S3({
