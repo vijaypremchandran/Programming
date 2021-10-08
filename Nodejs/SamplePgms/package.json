@@ -1,0 +1,14 @@
+{
+  "name": "samplepgms",
+  "version": "1.0.0",
+  "description": "Test sending files to the server",
+  "main": "fileSend.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vijay Chandran",
+  "license": "ISC",
+  "dependencies": {
+    "node-ssh": "^12.0.0"
+  }
+}
