@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nodejs_ejs Sample</title>
+</head>
+<body>
+    <p> Nodejs ejs example for json list to the text area!!</p>
+    <textarea name="jsonlist" id="jsonlist"cols="70" rows="50">
+        
+            <% memDetails.forEach(function(members) { %>
+              
+                Name : <%= members.name %> 
+                Age  : <%= members.age  %>
+                Place: <%= members.place %>
+              
+            <% }); %>
+
+    </textarea>
+</body>
+</html>
