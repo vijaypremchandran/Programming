@@ -1,0 +1,1 @@
+This is program to create a file for generating the elig and accum files from the user inputs.

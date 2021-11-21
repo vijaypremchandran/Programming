@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="styleheet" href="styles.css">
+
+    <title>Eligibility file generator</title>
+  </head>
+  <body class="card-body" style="background-color:rgb(228, 241, 233);" >
+    <h1 class="text-center text-muted" >X12/Cardh29 file generator</h1>
+       <form id="newForm" class="was-validated" action="/x12FileGen" method="POST">
+         <div class=" form-group row">
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Subscriber</label>
+            <div class="col-sm-2">
+              <input type="text" name="x12Subscriber" class="form-control form-control-sm" id="colFormLabelSm" placeholder="Y/N (INS)" required maxlength="1" pattern="[Y/N]{1}">
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Card holder num</label>
+            <div class="col-sm-2">
+              <input type="text" name="x12cardNum" class="form-control form-control-sm" id="colFormLabelSm" placeholder="10 digit card holder # (REF 0F)" required maxlength="10" pattern="[0-9]{10}">
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Member num</label>
+            <div class="col-sm-2">
+              <input type="text" name="x12memNum" class="form-control form-control-sm" id="colFormLabelSm" placeholder="2 digit member # (INS)" required maxlength="2" pattern="[0-9]{02}">
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Relation Code</label>
+            <div class="col-sm-2">
+              <input type="text" name="x12relCode" class="form-control form-control-sm" id="colFormLabelSm" placeholder="2 digit number # (INS)" required maxlength="2" pattern="[0-9]{02}">
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Last name</label>
+            <div class="col-sm-2">
+              <input type="text" name="x12lastName" class="form-control form-control-sm" id="colFormLabelSm" required placeholder="Mandatory (NM1)" >
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">First name</label>
+            <div class="col-sm-2">
+              <input type="text" name="x12firstName" class="form-control form-control-sm" id="colFormLabelSm" required placeholder="Mandatory (NM1)" >
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Birth date</label>
+            <div class="col-sm-2">
+              <input type="text" name="x12birthDate" class="form-control form-control-sm" id="colFormLabelSm" required placeholder="CCYYDDMM (DMG)" required maxlength="8" pattern="[0-9]{08}" >
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Gender code</label>
+            <div class="col-sm-2">
+              <input type="text" name="x12genderCode" class="form-control form-control-sm" id="colFormLabelSm" placeholder="M/F/O (DMG)" required maxlength="1" pattern="[M/F/O]{1}">
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">SSN num</label>
+            <div class="col-sm-2">
+              <input type="text" name="x12ssnNum" class="form-control form-control-sm" id="colFormLabelSm" placeholder="10 digit num # (no dashes) (NM1) " maxlength="10" pattern="[0-9]{10}">
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Beg date</label>
+            <div class="col-sm-2">
+              <input type="text" name="x12begDate" class="form-control form-control-sm" id="colFormLabelSm" required placeholder="CCYYDDMM (DTP*348)" required maxlength="8" pattern="[0-9]{08}" >
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">End date</label>
+            <div class="col-sm-2">
+              <input type="text" name="x12endDate" class="form-control form-control-sm" id="colFormLabelSm" required placeholder="CCYYDDMM (DTP*349)" required maxlength="8" pattern="[0-9]{08}" >
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Chg date</label>
+            <div class="col-sm-2">
+              <input type="text" name="x12chgDate" class="form-control form-control-sm" id="colFormLabelSm" required placeholder="CCYYDDMM (DTP*303)" required maxlength="8" pattern="[0-9]{08}" >
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Alt Grp ID</label>
+            <div class="col-sm-2">
+              <input type="text" name="x12altGrpId" class="form-control form-control-sm" id="colFormLabelSm" required placeholder="REF 1L" maxlength="20" >
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Dep num</label>
+            <div class="col-sm-2">
+              <input type="text" name="x12dxId" class="form-control form-control-sm" id="colFormLabelSm" placeholder="REF DX" maxlength="14">
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Alternate num</label>
+            <div class="col-sm-2">
+              <input type="text" name="x12zzId" class="form-control form-control-sm" id="colFormLabelSm" placeholder="REF ZZ" maxlength="14">
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Number on Card</label>
+            <div class="col-sm-2">
+              <input type="text" name="x1223Id" class="form-control form-control-sm" id="colFormLabelSm" placeholder="REF 23" maxlength="20">
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Cov Level Code </label>
+            <div class="col-sm-2">
+              <input type="text" name="x12covlvlCode" class="form-control form-control-sm" id="colFormLabelSm" placeholder="EMP/IND/CHD" maxlength="3" pattern="[A-Z]{03}" >
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Cov Type</label>
+            <div class="col-sm-2">
+              <input type="text" name="x12covType" class="form-control form-control-sm" id="colFormLabelSm" required placeholder="1-7 for CA29 fmt" maxlength="1" pattern="[0-7]{01}" >
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Address Line 1</label>
+            <div class="col-sm-2">
+              <input type="text" name="x12addrLn1" class="form-control form-control-sm" id="colFormLabelSm" placeholder="Address Line 1" >
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Address Line 2</label>
+            <div class="col-sm-2">
+              <input type="text" name="x12addrLn2" class="form-control form-control-sm" id="colFormLabelSm" placeholder="Address Line 2" >
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">City</label>
+            <div class="col-sm-2">
+              <input type="text" name="x12city" class="form-control form-control-sm" id="colFormLabelSm" placeholder="City" >
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">State</label>
+            <div class="col-sm-2">
+              <input type="text" name="x12state" class="form-control form-control-sm" id="colFormLabelSm" placeholder=" 2 Char State prefix" maxlength="2" pattern="[A-Z]{2}" >
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Zip (5 char)</label>
+            <div class="col-sm-2">
+              <input type="text" name="x12zip5" class="form-control form-control-sm" id="colFormLabelSm" placeholder="5 digit zip code" maxlength="5" pattern="[0-9]{5}" >
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Zip (4 char)</label>
+            <div class="col-sm-2">
+              <input type="text" name="x12zip4" class="form-control form-control-sm" id="colFormLabelSm" placeholder="4 digit zip code" maxlength="4" pattern="[0-9]{4}" >
+            </div>
+
+            <div class="mb-6 col-sm-6">  
+              <label for="runType">File format</label>
+              <select name="runType" id="runType">
+                <option value="X12" name = "X12" >X12</option>
+                <option value="Cardh29" name = "Cardh29" >Cardh29</option>
+              </select>
+            </div>
+  
+          </div>
+         <br>
+         <div class="row">
+           <div class="mb-3 col-sm-2" >
+             <button class="btn btn-outline-secondary btn-sm" type="submit" name="generate">Generate test record</button>
+           </div>
+        </div>
+       </form>
+      
+       <hr>
+
+    <!-- Accum file part -->
+    <h1 class="text-center text-muted" >Accum file generator</h1>
+       <form id="newForm" class="was-validated" action="/accumFileGen" method="POST">
+         <div class=" form-group row">
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Tran Type</label>
+            <div class="col-sm-2">
+              <input type="text" name="tranType" class="form-control form-control-sm" id="colFormLabelSm" placeholder="A(Accum)" required maxlength="1" pattern="[A]{1}">
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Card holder num</label>
+            <div class="col-sm-2">
+              <input type="text" name="cardNum" class="form-control form-control-sm" id="colFormLabelSm" placeholder="10 digit card holder #" required maxlength="10" pattern="[0-9]{10}">
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Member num</label>
+            <div class="col-sm-2">
+              <input type="text" name="memNum" class="form-control form-control-sm" id="colFormLabelSm" placeholder="2 digit member #" required maxlength="2" pattern="[0-9]{02}">
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Sponsor num</label>
+            <div class="col-sm-2">
+              <input type="text" name="spoNum" class="form-control form-control-sm" id="colFormLabelSm" placeholder="4 digit number #" required maxlength="4" pattern="[0-9]{04}">
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Last name</label>
+            <div class="col-sm-2">
+              <input type="text" name="lastName" class="form-control form-control-sm" id="colFormLabelSm" placeholder="Not mandatory" >
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">First name</label>
+            <div class="col-sm-2">
+              <input type="text" name="firstName" class="form-control form-control-sm" id="colFormLabelSm" placeholder="Not mandatory" >
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Birth date</label>
+            <div class="col-sm-2">
+              <input type="text" name="birthDate" class="form-control form-control-sm" id="colFormLabelSm" required placeholder="CCYYDDMM" required maxlength="8" pattern="[0-9]{08}" >
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Copay Amt</label>
+            <div class="col-sm-2">
+              <input type="number" name="copayAmt" class="form-control form-control-sm" id="colFormLabelSm" required placeholder="Total Copay Amt (+/-)" min="-1000000" max="1000000">
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Total amt paid</label>
+            <div class="col-sm-2">
+              <input type="number" name="totAmt" class="form-control form-control-sm" id="colFormLabelSm" required placeholder="Total Amt Paid (+/-)" min="-1000000" max="1000000" >
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Roll Start date</label>
+            <div class="col-sm-2">
+              <input type="text" name="rollDate" class="form-control form-control-sm" id="colFormLabelSm" required placeholder="CCYYDDMM" required maxlength="8" pattern="[0-9]{08}" >
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Alt Grp ID</label>
+            <div class="col-sm-2">
+              <input type="text" name="altGrpId" class="form-control form-control-sm" id="colFormLabelSm" placeholder="Not mandatory" >
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Med Ded Amt</label>
+            <div class="col-sm-2">
+              <input type="number" name="medDed" class="form-control form-control-sm" id="colFormLabelSm" required placeholder="Med Ded Amt (+/-)" min="-100000000" max="100000000" >
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Med Max Amt</label>
+            <div class="col-sm-2">
+              <input type="number" name="medMax" class="form-control form-control-sm" id="colFormLabelSm" required placeholder="Med Max Amt (+/-)" min="-100000000" max="100000000" >
+            </div>
+
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Med OOP Amt</label>
+            <div class="col-sm-2">
+              <input type="number" name="medOop" class="form-control form-control-sm" id="colFormLabelSm" required placeholder="Med OOP Amt (+/-)" min="-100000000" max="100000000" >
+            </div>
+          </div>
+         <br>
+         <div class="mb-3" >
+           <button class="btn btn-outline-secondary btn-sm" type="submit" name="generate">Generate test record</button>
+         </div>
+       </form>
+
+       <hr>
+
+       <h1 class="text-center text-muted" >Upload your own file</h1>
+       <form action="/uploadFile" enctype="multipart/form-data" method="POST"> 
+        
+        <div class="mb-6 col-sm-6">  
+          <label for="runType">File format</label>
+          <select name="runType" id="runType">
+            <option value="X12" name = "X12" >X12</option>
+            <option value="Cardh29" name = "Cardh29" >Cardh29</option>
+            <option value="Accum" name = "Accum" >Accum</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="formFileSm" class="form-label">Upload your own file </label>
+          <input class="form-control form-control-sm" id="formFileSm" type="file" name="uploaded_file" />
+        </div>
+        <div class="mb-3" >
+          <button class="btn btn-outline-secondary btn-sm" type="upload" name="upload">Submit to upload </button>
+        </div>
+      </form>
+      
+      <hr>
+      <h1 class="text-center text-muted" >Send Files to Server</h1>
+      <form action="/sendFile" method="POST">
+        <div class="text-center">
+          <div class="mb-6 col-sm-6">  
+            <label for="runType">File format</label>
+            <select name="runType" id="runType">
+              <option value="X12" name = "X12" >X12</option>
+              <option value="Cardh29" name = "Cardh29" >Cardh29</option>
+              <option value="Accum" name = "Accum" >Accum</option>
+            </select>
+          </div>
+       </div>
+
+       <div class="text-center">
+         <button class="btn btn-outline-success btn-sm" type="submit" name="sendFile"> Send file to server </button>
+       </div>
+      </form> 
+      <hr>
+      <form action="/x12tojson" method="POST">
+
+       <div class="text-center">
+        <button class="btn btn-outline-secondary btn-sm" type="submit" name="x12ToJson"> X12 to JSON </button>
+       </div>
+       <br>
+       <div class="text-center"> 
+        <textarea id="jsonList" name="jsonList" rows="70" cols="50">
+          
+          <% x12tojsonDet.forEach(function(members) { %>
+              
+            cardHolder : <%= members.cardHolder %> 
+            memNum : <%= members.memNum  %>
+            altGrp : <%= members.altGrp %>
+            effData : <%= members.effData %>
+           
+          <% }); %>
+        </textarea>
+       </div>
+      </form>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
