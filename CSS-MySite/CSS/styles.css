@@ -1,0 +1,23 @@
+body {
+    margin: 0;
+}
+
+h1 {
+    margin-top: 0;
+}
+
+.c1 {
+    background-color: #E4CDA7;
+}
+
+.c2 {
+    background-color: red;
+    height: 200px;
+    width: 200px;
+}
+
+.c3 {
+    background-color: blue;
+    height: 200px;
+    width: 200px;
+}
