@@ -9,3 +9,6 @@ package-lock.json
 
 # RSA_key 
 id_rsa
+
+# shell scripts 
+gitpush.sh
