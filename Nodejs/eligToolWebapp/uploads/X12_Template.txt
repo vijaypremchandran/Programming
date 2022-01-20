@@ -9,7 +9,7 @@ NM1*IL*1*lastName*firstName****34*SSN~
 N3*418 E 5TH ST~
 N4*HOISINGTON*KS*67544~
 DMG*D8*dateOfBirth*genderCode~
-HD*030**PDG*NHC156-MED-PPO-CIGNA*covlvlCode~
+HD*030**XXX*XXXXXX-XXX-XXX-XXXXX*covlvlCode~
 DTP*348*D8*begDate~
 DTP*349*D8*endData~
 DTP*303*D8*chgDate~
