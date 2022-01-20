@@ -1,0 +1,7 @@
+Robin="server ip"
+prodTest=xxx.xx.xxx.xx
+prod=yyy.yy.yyy.yy
+DIR="path where the shell scripts are located"
+uploadPath = "path where the files are copied"
+serverPort = "port numner"
+userName = "user name"
