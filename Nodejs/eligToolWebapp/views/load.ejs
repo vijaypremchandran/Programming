@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Eligibility Testing Application</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+            <div class="container px-5">
+                <a class="navbar-brand" href="/Home">Home</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                      <li class="nav-item"><a class="nav-link" href="/create">Create</a></li>
+                      <li class="nav-item"><a class="nav-link" href="/load">Load</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Header-->
+        <header class="masthead text-center text-white">
+            <div class="masthead-content">
+                <div class="container px-5">
+                    <h1 class="masthead-heading mb-0">Eligibility Testing Tool </h1>
+                    <h2 class="masthead-subheading mb-0">Create -> Send -> Load </h2>
+                </div>
+            </div>
+            <div class="bg-circle-1 bg-circle"></div>
+            <div class="bg-circle-2 bg-circle"></div>
+            <div class="bg-circle-3 bg-circle"></div>
+            <div class="bg-circle-4 bg-circle"></div>
+        </header>
+        <body class="card-body">
+
+            <!-- adding ejs condition to show messsage on the screen -->
+            <% if (altMessage.messageStatus == "Y"){ %>
+              <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Message!</strong> <%= altMessage.message %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div> 
+            <% }; %>
+            <!-- ejs condition ends -->
+        
+        <!-- Run eligibility form -->
+        <h1 class="text-center text-muted" >Load Eligibility File</h1>
+        <div class=" form-group row">
+          <form id="newForm" class="was-validated" action="/runElig" method="POST">
+            <div class="col-sm-5 mb-3">
+              <input type="text" name="flname" class="form-control" aria-label="File Name" placeholder="File name" required>
+              <div class="invalid-feedback">Please specify the file name</div>
+            </div>
+        
+            <div class="col-sm-5 mb-3">
+              <input type="text" name="clientId" class="form-control" aria-label="Client ID" placeholder="Client ID(ac)" required maxlength="2" pattern="[a-z]{02}">
+              <div class="invalid-feedback">Please specify the client ID </div>
+            </div>
+        
+            <div class="col-sm-5 mb-3">
+              <input type="text" name="date" class="form-control" aria-label="date" placeholder="Date(MMDD)" required maxlength="4" pattern="[0-9]{04}">
+              <div class="invalid-feedback">Please specify date in MMDD format</div>
+            </div>
+        
+            <label for="runType">File format</label>
+            <select name="runType" id="runType">
+              <option value="X12" name = "X12" >X12</option>
+              <option value="Cardh29" name = "Cardh29" >Cardh29</option>
+              <option value="accum" name = "accum" >Accumulator</option>
+            </select> &emsp;
+        
+            <label for="runEnv">Run env</label>
+            <select name="runEnv" id="runEnv">
+              <option value="Robin" name = "Robin" >Robin</option>
+              <option value="Prodtest10" name = "Prodtest10" disabled>Prodtest10</option>
+              <option value="Prod" name = "Prod" disabled>Prod</option>
+            </select> &emsp;
+        
+            <label for="logMode">Log mode</label>
+            <select name="logMode" id="logMode">
+              <option value="logs" name = "logs">Logs</option>
+              <option value="noLogs" name = "noLogs">No logs</option>
+            </select>
+        
+            <br><br>
+            <div class="mb-3">
+             <button class="btn btn-outline-secondary btn-sm" type="submit" name="submit">Submit to load</button>
+            </div>
+          </form>
+          <div class="col-sm-5 mb-3">
+              <label for="validationTextarea" class="form-label">Run log from Server</label>
+              <textarea class="form-control" id="validationTextarea" placeholder="Run log will be shown here .."><%= logs %></textarea>
+          </div>
+        </div>
+        <!-- Run eligibility form ends -->
+        <!-- Footer-->
+        <footer class="py-5 bg-black">
+            <div class="container px-5"><p class="m-0 text-center text-white small">Copyright &copy; PDMI 2021</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
